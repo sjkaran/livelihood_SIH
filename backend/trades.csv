@@ -1,0 +1,19 @@
+trade_id,trade_name,category,min_education,interests_tags,employment_type,mobility_requirement,description
+T01,Tailoring & Fashion Design (NSQF Lvl 3),Textile,8th Pass,stitching|clothes|fashion|sewing|design,self-employment,local,Learn garment stitching and basic fashion design for self-employment or boutique work.
+T02,Electrician - Domestic Wiring (NSQF Lvl 4),Electrical,10th Pass,electrical|wiring|repair|technical,wage-employment,travel,"Household and small commercial electrical wiring, repair and maintenance."
+T03,Plumbing (NSQF Lvl 3),Construction,8th Pass,pipes|plumbing|repair|construction,wage-employment,travel,Installation and repair of water supply and sanitation pipelines.
+T04,Beautician & Salon Services (NSQF Lvl 4),Beauty & Wellness,8th Pass,beauty|salon|grooming|cosmetics,self-employment,local,"Hair, skin and beauty services for setting up a home salon or working in one."
+T05,Light Motor Vehicle Driving (NSQF Lvl 3),Transport,5th Pass,driving|vehicle|transport,wage-employment,travel,"Commercial driving license training for cabs, delivery and logistics jobs."
+T06,Mobile Phone Repair Technician (NSQF Lvl 4),Electronics,10th Pass,mobile|electronics|repair|technical,self-employment,local,Diagnose and repair smartphones; open a mobile repair shop.
+T07,Basic Computer Operator & IT Assistant (NSQF Lvl 3),IT/ITES,10th Pass,computer|typing|office|it,wage-employment,local,"MS Office, internet, typing and basic data entry skills for office jobs."
+T08,Food Processing & Preservation (NSQF Lvl 3),Food Processing,8th Pass,cooking|food|preservation|packaging,self-employment,local,"Fruit/vegetable preservation, pickling, packaging for small food business."
+T09,Handicrafts & Handloom Weaving (NSQF Lvl 3),Handicrafts,5th Pass,handicraft|weaving|art|craft,self-employment,local,Traditional weaving and craft-making for local and online markets.
+T10,Agriculture Extension & Farm Machinery Operator (NSQF Lvl 3),Agriculture,8th Pass,farming|agriculture|crops|machinery,self-employment,local,Modern farming techniques and operation of farm machinery.
+T11,Construction Mason (NSQF Lvl 3),Construction,5th Pass,construction|building|labour,wage-employment,travel,"Brick-laying, plastering and basic construction work."
+T12,Welding Technician (NSQF Lvl 4),Manufacturing,8th Pass,welding|metal|fabrication|technical,wage-employment,travel,Arc and gas welding for fabrication and manufacturing units.
+T13,Retail Sales Associate (NSQF Lvl 3),Retail,8th Pass,sales|retail|customer|shop,wage-employment,local,"Customer service, billing and inventory skills for retail stores."
+T14,Beekeeping & Apiculture (NSQF Lvl 2),Agriculture,5th Pass,farming|agriculture|bees|honey,self-employment,local,Honey production and beekeeping as a supplementary livelihood.
+T15,Domestic Data Entry Operator (NSQF Lvl 3),IT/ITES,10th Pass,computer|typing|data|office,wage-employment,local,Data entry and record-keeping for government/private offices.
+T16,Solar Panel Installation Technician (NSQF Lvl 4),Renewable Energy,10th Pass,electrical|technical|solar|installation,wage-employment,travel,Installation and maintenance of rooftop solar panel systems.
+T17,Nursing Assistant / Home Health Aide (NSQF Lvl 4),Healthcare,10th Pass,healthcare|caregiving|nursing|medical,wage-employment,travel,Basic patient care and assistance for hospitals or home care.
+T18,Bamboo & Cane Craft Making (NSQF Lvl 2),Handicrafts,5th Pass,handicraft|bamboo|craft|art,self-employment,local,Making bamboo/cane products such as baskets and furniture for sale.

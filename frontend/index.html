@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Livelihood Skilling Voice Assistant — PM-AJAY</title>
+<style>
+  :root{
+    --saffron:#FF9933; --white:#fff; --green:#138808; --navy:#0B2447;
+    --bg:#f4f6fa; --card:#fff; --text:#1c2733; --muted:#6b7684; --accent:#0B2447;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);}
+  header{background:linear-gradient(90deg,var(--saffron),var(--white) 50%,var(--green));
+    padding:2px;}
+  header .inner{background:var(--navy);color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  header h1{font-size:1.15rem;margin:0;}
+  header p{margin:2px 0 0;font-size:.8rem;opacity:.85;}
+  nav a{color:#fff;text-decoration:none;background:rgba(255,255,255,.12);padding:8px 14px;border-radius:20px;font-size:.85rem;}
+  main{max-width:720px;margin:28px auto;padding:0 16px;}
+  .card{background:var(--card);border-radius:14px;padding:24px;box-shadow:0 2px 14px rgba(0,0,0,.06);margin-bottom:18px;}
+  .lang-row{display:flex;gap:10px;align-items:center;margin-bottom:8px;}
+  select{padding:8px 12px;border-radius:8px;border:1px solid #ccc;font-size:.9rem;}
+  .progress{display:flex;gap:6px;margin:14px 0;}
+  .dot{flex:1;height:6px;border-radius:4px;background:#e2e6ec;}
+  .dot.done{background:var(--green);}
+  .dot.active{background:var(--saffron);}
+  #question-text{font-size:1.15rem;font-weight:600;margin:10px 0 18px;min-height:2.6em;}
+  .controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+  button{cursor:pointer;border:none;border-radius:10px;padding:12px 20px;font-size:.95rem;font-weight:600;}
+  #recordBtn{background:var(--accent);color:#fff;display:flex;align-items:center;gap:8px;}
+  #recordBtn.recording{background:#c0392b;animation:pulse 1.2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,57,43,.5);}70%{box-shadow:0 0 0 14px rgba(192,57,43,0);}100%{box-shadow:0 0 0 0 rgba(192,57,43,0);}}
+  #textFallback{flex:1;min-width:200px;padding:10px;border-radius:8px;border:1px solid #ccc;font-size:.9rem;}
+  #submitTextBtn{background:#eef1f5;color:var(--text);}
+  .transcript-box{margin-top:16px;padding:12px 14px;background:#f7f9fc;border-left:4px solid var(--saffron);border-radius:6px;font-size:.9rem;min-height:1.2em;}
+  .muted{color:var(--muted);font-size:.82rem;}
+  #status{font-size:.85rem;color:var(--muted);margin-top:8px;}
+  .rec-card{border:1px solid #e2e6ec;border-radius:10px;padding:16px;margin-top:10px;}
+  .rec-card h3{margin:0 0 4px;color:var(--navy);}
+  .score-pill{display:inline-block;background:var(--green);color:#fff;font-size:.72rem;padding:3px 9px;border-radius:12px;margin-left:8px;}
+  #playRecBtn{margin-top:12px;background:var(--saffron);color:#1c2733;}
+  .hidden{display:none;}
+  footer{text-align:center;padding:20px;color:var(--muted);font-size:.78rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <div>
+      <h1>🎙️ Livelihood Mapping & Skilling Voice Assistant</h1>
+      <p>SIH26097 · Ministry of Social Justice &amp; Empowerment · PM-AJAY Prototype</p>
+    </div>
+    <nav><a href="/dashboard">Officer Dashboard →</a></nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="card" id="setupCard">
+    <div class="lang-row">
+      <label for="langSelect"><strong>Language:</strong></label>
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+      </select>
+      <span class="muted">(Odia toggle shown for judges — future scope)</span>
+    </div>
+    <button id="startBtn" style="background:var(--green);color:#fff;">Start Beneficiary Interview</button>
+  </div>
+
+  <div class="card hidden" id="conversationCard">
+    <div class="progress" id="progressDots"></div>
+    <div id="question-text"></div>
+
+    <div class="controls">
+      <button id="recordBtn">🎤 Hold / Click to Record</button>
+      <input type="text" id="textFallback" placeholder="...or type the answer here (fallback)">
+      <button id="submitTextBtn">Submit Text</button>
+    </div>
+    <div id="status"></div>
+    <div class="transcript-box" id="transcriptBox">Transcript will appear here…</div>
+  </div>
+
+  <div class="card hidden" id="resultCard">
+    <h2 style="color:var(--navy);">✅ Recommended Skill Training Programs</h2>
+    <audio id="ttsAudio" class="hidden" controls></audio>
+    <button id="playRecBtn">🔊 Play Recommendation Aloud</button>
+    <div id="recList"></div>
+    <button id="restartBtn" style="margin-top:16px;background:#eef1f5;color:var(--text);">Start New Interview</button>
+  </div>
+
+</main>
+
+<footer>Prototype for SIH 2026 demo · Voice → Transcript → NSQF Matching → Spoken Recommendation → Officer Dashboard</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
