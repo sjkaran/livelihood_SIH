@@ -1,5 +1,5 @@
 import customtkinter as ctk
-import whisper
+import whisper   # STT
 import sounddevice as sd
 import numpy as np
 import scipy.io.wavfile as wav
@@ -11,7 +11,7 @@ import pandas as pd
 from tkinter import ttk
 
 # Windows TTS Imports
-import win32com.client
+import win32com.client # TTS
 import pythoncom
 
 # --- Configuration ---

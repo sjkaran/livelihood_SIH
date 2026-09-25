@@ -120,8 +120,13 @@ async function submitAnswer({ mode }) {
     statusEl.textContent = "Voice transcription failed — please type your answer instead.";
     return;
   }
-  transcriptBox.textContent = `"${data.transcript}"  →  extracted: ${data.extracted_value}`;
-  statusEl.textContent = "Answer recorded ✓";
+  const engineTag = data.stt_engine && data.stt_engine !== "text_input" ? ` [${data.stt_engine}]` : "";
+  transcriptBox.textContent = `"${data.transcript}"${engineTag}  →  extracted: ${data.extracted_value}`;
+  if (data.low_confidence) {
+    statusEl.textContent = "Not sure we heard that clearly — you can re-record this answer, or continue.";
+  } else {
+    statusEl.textContent = "Answer recorded ✓";
+  }
   currentIndex += 1;
   setTimeout(showQuestion, 700);
 }

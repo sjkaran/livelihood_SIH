@@ -11,7 +11,7 @@ through a fully spoken interview.
 ## Quick Start
 
 ```bash
-cd livelihood_voice_assistant
+cd livelihood_SIH/web
 bash install.sh
 source venv/bin/activate
 python run.py
@@ -42,7 +42,7 @@ Open `http://localhost:5000/dashboard` for the officer-facing dashboard.
 ## Project Structure
 
 ```
-livelihood_voice_assistant/
+livelihood_SIH/web/
 ├── run.py                  ← Launch server (python run.py)
 ├── install.sh              ← One-command setup script
 ├── requirements.txt

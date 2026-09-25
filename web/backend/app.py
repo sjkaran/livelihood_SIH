@@ -21,6 +21,11 @@ app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
 
 database.init_db()
 
+# Load Whisper + Vosk ONCE, right now, at server startup — not lazily on the
+# first /transcribe call. Any loading problem prints to your terminal here,
+# before you're on stage, instead of surfacing as a silent failure mid-demo.
+STT_STATUS = stt.preload_models()
+
 # In-memory conversation state per session (fine for a single-demo prototype)
 SESSIONS = {}
 
@@ -37,7 +42,17 @@ def dashboard():
 
 @app.route("/api/health")
 def health():
-    return jsonify({"status": "ok", "trades_loaded": len(recommender.load_trades())})
+    return jsonify({
+        "status": "ok",
+        "trades_loaded": len(recommender.load_trades()),
+        "stt": stt.get_stt_status(),
+    })
+
+
+@app.route("/api/stt_status")
+def stt_status():
+    """Hit this before the demo to confirm Whisper (and/or Vosk) actually loaded."""
+    return jsonify(stt.get_stt_status())
 
 
 @app.route("/api/questions")
@@ -63,12 +78,16 @@ def transcribe():
     - JSON {"text": "..."} as a typed-text fallback (used if mic/Whisper fails on stage)
     Also expects 'question_id' and 'session_id' form/json fields.
     """
+    engine_used = "text_input"
+    low_confidence = False
     if "audio" in request.files:
         lang = request.form.get("language", "en")
         question_id = request.form.get("question_id")
         session_id = request.form.get("session_id")
         try:
-            text = stt.transcribe_audio_file(request.files["audio"], language=lang)
+            text, engine_used, low_confidence = stt.transcribe_audio_file(
+                request.files["audio"], language=lang
+            )
         except Exception as e:
             return jsonify({"error": str(e), "fallback": "use_text_input"}), 200
     else:
@@ -84,7 +103,13 @@ def transcribe():
         SESSIONS[session_id]["qa"].append({"question": q_text, "answer_raw": text, "answer_extracted": extracted})
         SESSIONS[session_id]["answers"][question_id] = extracted
 
-    return jsonify({"transcript": text, "extracted_value": extracted, "question_id": question_id})
+    return jsonify({
+        "transcript": text,
+        "extracted_value": extracted,
+        "question_id": question_id,
+        "stt_engine": engine_used,       # "whisper", "vosk", or "text_input"
+        "low_confidence": low_confidence,  # True => UI should suggest re-recording
+    })
 
 
 @app.route("/api/recommend", methods=["POST"])
